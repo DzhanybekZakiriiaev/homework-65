@@ -13,17 +13,7 @@ CREATE TABLE IF NOT EXISTS product (
     product_id SERIAL PRIMARY KEY,
     name VARCHAR(45),
     description VARCHAR(200),
+    image VARCHAR(200),
     number INT,
     price INT
-    );
-
-CREATE TABLE IF NOT EXISTS store (
-    store_id SERIAL PRIMARY KEY,
-    name VARCHAR(45),
-    location VARCHAR(150)
-    );
-
-CREATE TABLE IF NOT EXISTS stock (
-    stock_id SERIAL PRIMARY KEY,
-    location VARCHAR(150)
     );

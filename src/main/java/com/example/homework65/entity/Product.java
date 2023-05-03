@@ -15,6 +15,9 @@ private Integer product_id;
 private String name;
 
 @Column(length = 200)
+private String image;
+
+@Column(length = 200)
 private String description;
 
 @Column
