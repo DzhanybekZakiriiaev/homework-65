@@ -12,7 +12,9 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS product (
     product_id SERIAL PRIMARY KEY,
     name VARCHAR(45),
-    description VARCHAR(200)
+    description VARCHAR(200),
+    number INT,
+    price INT
     );
 
 CREATE TABLE IF NOT EXISTS store (
