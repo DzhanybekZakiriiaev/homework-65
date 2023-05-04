@@ -1,9 +1,11 @@
-INSERT INTO users (name, surname, email, password, role)
+USE `webstore`;
+
+INSERT INTO `users` (name, surname, email, password, role)
 VALUES ('John', 'Doe', 'customer@example.com', '$2a$10$BG88S4JNCulnnZ1z3/HdAO4Yw4kvDlkxCk41EHVZ9zmcXdH7VtkKy', 'CUSTOMER'),
        ('Jane', 'Doe', 'redactor@example.com', '$2a$10$7VHzpL6o0PcNzXZjS8ZlROgnKr7cNl3qJy/W4fYIZDK/4UK/TFa76', 'REDACTOR'),
        ('Bob', 'Smith', 'admin@example.com', '$2a$10$zQe01K6yws7VU5L6u5HcLuMvZosSMgW8dA.CpOxJ0o98ddxdGwW8O', 'ADMIN');
 
-INSERT INTO product (name, description, number, price, image) VALUES
+INSERT INTO `product` (name, description, number, price, image) VALUES
                                             ('iPhone 13 Pro Max', 'The latest iPhone model with a 6.7 inch Super Retina XDR display.', 20, 1500, ''),
                                             ('Samsung Galaxy S22', 'A high-end Android smartphone with a 6.2 inch Dynamic AMOLED display.', 56, 1234, ''),
                                             ('MacBook Pro 16-inch', 'A powerful laptop with a 16 inch Retina display and M1 Pro chip.', 45, 2350, ''),

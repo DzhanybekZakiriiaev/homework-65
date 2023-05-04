@@ -1,6 +1,6 @@
-USE webstore;
+USE `webstore`;
 
-CREATE TABLE IF NOT EXISTS users (
+CREATE TABLE IF NOT EXISTS `users` (
     id SERIAL PRIMARY KEY,
     name VARCHAR(45),
     surname VARCHAR(45),
@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS users (
     role VARCHAR(10) CHECK (role IN ('CUSTOMER', 'REDACTOR', 'ADMIN'))
     );
 
-CREATE TABLE IF NOT EXISTS product (
+CREATE TABLE IF NOT EXISTS `product` (
     product_id SERIAL PRIMARY KEY,
     name VARCHAR(45),
     description VARCHAR(200),

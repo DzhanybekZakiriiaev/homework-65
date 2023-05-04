@@ -2,6 +2,7 @@ package com.example.homework65.service;
 
 import com.example.homework65.entity.User;
 import com.example.homework65.repository.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,6 +12,7 @@ import java.util.Optional;
 
 @Service
 public class UserService {
+    @Autowired
 
     private final UserRepository userRepository;
 
@@ -19,8 +21,8 @@ public class UserService {
     }
 
     @Transactional(readOnly = true)
-    public User userByUsername(String username){
-        User byUserName = userRepository.findByUsername(username);
+    public User userByName(String name){
+        User byUserName = userRepository.findByName(name);
         return byUserName;
     }
 
