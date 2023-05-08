@@ -31,7 +31,11 @@ public class UserService {
         User byEmail = userRepository.findByEmail(email);
         return byEmail;
     }
-
+    @Transactional(readOnly = true)
+    public boolean existsByEmail(String email){
+        boolean exists = userRepository.existsByEmail(email);
+        return exists;
+    }
     @Transactional(readOnly = true)
     public User findById(Integer id) {
         Optional<User> userOptional = userRepository.findById(Long.valueOf(id));

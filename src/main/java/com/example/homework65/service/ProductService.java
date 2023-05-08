@@ -3,14 +3,17 @@ package com.example.homework65.service;
 import com.example.homework65.entity.Product;
 import com.example.homework65.repository.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 public class ProductService {
-    @Autowired
+
     private final ProductRepository productRepository;
 
     public ProductService(ProductRepository productRepository) {
@@ -39,4 +42,19 @@ public class ProductService {
         return productRepository.findAll();
     }
 
+    @Transactional(readOnly = true)
+    public Page<Product> findProductsByNameContaining(String name, Pageable pageable) {
+        return productRepository.findByNameContaining(name, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Product> findProductsByPriceLessThanEqual(Double price, Pageable pageable) {
+        return productRepository.findByPriceLessThanEqual(price, pageable);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Product> findProductsByCategoryName(String category, Pageable pageable) {
+        return productRepository.findByCategoryName(category, pageable);
+    }
 }
+

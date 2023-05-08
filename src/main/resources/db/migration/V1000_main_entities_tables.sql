@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 CREATE TABLE IF NOT EXISTS `product` (
     product_id SERIAL PRIMARY KEY,
     name VARCHAR(45),
+    category VARCHAR(45),
     description VARCHAR(200),
     image VARCHAR(200),
     number INT,

@@ -11,6 +11,7 @@ import java.util.List;
 public interface UserRepository extends BaseRepository<User, Long> {
     User findByName(String name);
     User findByEmail(String email);
+    boolean existsByEmail(String email);
 
     @Query("SELECT DISTINCT r FROM User u JOIN u.role r WHERE u.id = :userId")
     List<Role> findRolesByUserId(Long userId);
