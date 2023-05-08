@@ -30,6 +30,16 @@ public class ProductService {
         return productRepository.findByNumber(number);
     }
 
+    @Transactional(readOnly = true)
+    public List<Product> findProductsByEmail(String email) {
+        return productRepository.findProductsByEmail(email);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Product> findProductsByUserId(Long id) {
+        return productRepository.findProductsByUserId(id);
+    }
+
     public void saveProduct(Product product) {
         productRepository.save(product);
     }

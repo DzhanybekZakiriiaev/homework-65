@@ -42,6 +42,14 @@ public class UserService {
         return userOptional.orElse(null);
     }
 
+    public Optional<User> getUserByIdWithBucket(Long id) {
+        return userRepository.findByIdWithBucket(id);
+    }
+
+    public Optional<User> getUserByEmailWithBucket(String email) {
+        return userRepository.findByEmailWithBucket(email);
+    }
+
     public void saveUser(User user) {
         userRepository.save(user);
     }
