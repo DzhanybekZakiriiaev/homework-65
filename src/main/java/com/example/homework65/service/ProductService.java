@@ -9,10 +9,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
-public class ProductService {
+public class ProductService{
 
     private final ProductRepository productRepository;
 
@@ -24,7 +25,10 @@ public class ProductService {
     public Product findProductByName(String name) {
         return productRepository.findByName(name);
     }
-
+    @Transactional(readOnly = true)
+    public Optional<Product> findProductById(Integer id) {
+        return productRepository.findById(id);
+    }
     @Transactional(readOnly = true)
     public Product findProductByNumber(Integer number) {
         return productRepository.findByNumber(number);
