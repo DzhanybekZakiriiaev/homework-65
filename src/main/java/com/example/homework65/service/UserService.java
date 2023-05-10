@@ -1,6 +1,8 @@
 package com.example.homework65.service;
 
 import com.example.homework65.entity.User;
+import com.example.homework65.exception.DuplicateEmailException;
+import com.example.homework65.exception.UserNotFoundException;
 import com.example.homework65.repository.user.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,23 +38,35 @@ public class UserService {
         boolean exists = userRepository.existsByEmail(email);
         return exists;
     }
-    @Transactional(readOnly = true)
     public User findById(Integer id) {
         Optional<User> userOptional = userRepository.findById(Long.valueOf(id));
-        return userOptional.orElse(null);
+        return userOptional.orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
     }
 
     public Optional<User> getUserByIdWithBucket(Long id) {
-        return userRepository.findByIdWithBucket(id);
+        Optional<User> userOptional = userRepository.findByIdWithBucket(id);
+        if (userOptional.isEmpty()) {
+            throw new UserNotFoundException("User not found with id " + id);
+        }
+        return userOptional;
     }
 
     public Optional<User> getUserByEmailWithBucket(String email) {
-        return userRepository.findByEmailWithBucket(email);
+        Optional<User> userOptional = userRepository.findByEmailWithBucket(email);
+        if (userOptional.isEmpty()) {
+            throw new UserNotFoundException("User not found with email " + email);
+        }
+        return userOptional;
     }
 
+
     public void saveUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            throw new DuplicateEmailException("User with email " + user.getEmail() + " already exists");
+        }
         userRepository.save(user);
     }
+
 
     public void deleteUserById(Long id) {
         userRepository.deleteById(id);
