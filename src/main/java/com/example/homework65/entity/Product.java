@@ -28,6 +28,10 @@ public class Product {
     @Column(length = 200)
     private String description;
 
+    @Size(max = 200)
+    @Column(length = 200)
+    private String category;
+
     @PositiveOrZero
     @Column
     private Integer number;

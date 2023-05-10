@@ -2,19 +2,19 @@ package com.example.homework65.controller;
 
 import com.example.homework65.entity.Comment;
 import com.example.homework65.service.CommentService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/comments")
 public class CommentController {
 
+    @Autowired
     private final CommentService commentService;
-
-    public CommentController(CommentService commentService) {
-        this.commentService = commentService;
-    }
 
     @GetMapping
     public List<Comment> findAllComments() {

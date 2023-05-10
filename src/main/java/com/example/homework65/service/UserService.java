@@ -4,6 +4,7 @@ import com.example.homework65.entity.User;
 import com.example.homework65.exception.DuplicateEmailException;
 import com.example.homework65.exception.UserNotFoundException;
 import com.example.homework65.repository.user.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,14 +14,10 @@ import java.util.Optional;
 
 
 @Service
+@RequiredArgsConstructor
 public class UserService {
-    @Autowired
 
     private final UserRepository userRepository;
-
-    public UserService(UserRepository userRepository) {
-        this.userRepository = userRepository;
-    }
 
     @Transactional(readOnly = true)
     public User userByName(String name){
@@ -43,21 +40,21 @@ public class UserService {
         return userOptional.orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
     }
 
-    public Optional<User> getUserByIdWithBucket(Long id) {
-        Optional<User> userOptional = userRepository.findByIdWithBucket(id);
-        if (userOptional.isEmpty()) {
-            throw new UserNotFoundException("User not found with id " + id);
-        }
-        return userOptional;
-    }
-
-    public Optional<User> getUserByEmailWithBucket(String email) {
-        Optional<User> userOptional = userRepository.findByEmailWithBucket(email);
-        if (userOptional.isEmpty()) {
-            throw new UserNotFoundException("User not found with email " + email);
-        }
-        return userOptional;
-    }
+//    public Optional<User> getUserByIdWithBucket(Long id) {
+//        Optional<User> userOptional = userRepository.findByIdWithBucket(id);
+//        if (userOptional.isEmpty()) {
+//            throw new UserNotFoundException("User not found with id " + id);
+//        }
+//        return userOptional;
+//    }
+//
+//    public Optional<User> getUserByEmailWithBucket(String email) {
+//        Optional<User> userOptional = userRepository.findByEmailWithBucket(email);
+//        if (userOptional.isEmpty()) {
+//            throw new UserNotFoundException("User not found with email " + email);
+//        }
+//        return userOptional;
+//    }
 
 
     public void saveUser(User user) {

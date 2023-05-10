@@ -2,6 +2,7 @@ package com.example.homework65.service;
 
 import com.example.homework65.entity.Product;
 import com.example.homework65.repository.product.ProductRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +14,10 @@ import java.util.Optional;
 
 @Service
 @Transactional
+@RequiredArgsConstructor
 public class ProductService{
 
     private final ProductRepository productRepository;
-
-    public ProductService(ProductRepository productRepository) {
-        this.productRepository = productRepository;
-    }
 
     @Transactional(readOnly = true)
     public Product findProductByName(String name) {
@@ -34,15 +32,15 @@ public class ProductService{
         return productRepository.findByNumber(number);
     }
 
-    @Transactional(readOnly = true)
-    public List<Product> findProductsByEmail(String email) {
-        return productRepository.findProductsByEmail(email);
-    }
+//    @Transactional(readOnly = true)
+//    public List<Product> findProductsByEmail(String email) {
+//        return productRepository.findProductsByEmail(email);
+//    }
 
-    @Transactional(readOnly = true)
-    public List<Product> findProductsByUserId(Long id) {
-        return productRepository.findProductsByUserId(id);
-    }
+//    @Transactional(readOnly = true)
+//    public List<Product> findProductsByUserId(Long id) {
+//        return productRepository.findProductsByUserId(id);
+//    }
 
     public void saveProduct(Product product) {
         productRepository.save(product);

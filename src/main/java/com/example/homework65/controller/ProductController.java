@@ -2,6 +2,8 @@ package com.example.homework65.controller;
 
 import com.example.homework65.entity.Product;
 import com.example.homework65.service.ProductService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
@@ -10,14 +12,11 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/products")
 public class ProductController {
 
     private final ProductService productService;
-
-    public ProductController(ProductService productService) {
-        this.productService = productService;
-    }
 
     @GetMapping
     public List<Product> findAllProducts() {
@@ -49,15 +48,15 @@ public class ProductController {
         return productService.findProductByNumber(number);
     }
 
-    @GetMapping("/email/{email}")
-    public List<Product> findProductsByEmail(@PathVariable String email) {
-        return productService.findProductsByEmail(email);
-    }
+//    @GetMapping("/email/{email}")
+//    public List<Product> findProductsByEmail(@PathVariable String email) {
+//        return productService.findProductsByEmail(email);
+//    }
 
-    @GetMapping("/user/{id}")
-    public List<Product> findProductsByUserId(@PathVariable Long id) {
-        return productService.findProductsByUserId(id);
-    }
+//    @GetMapping("/user/{id}")
+//    public List<Product> findProductsByUserId(@PathVariable Long id) {
+//        return productService.findProductsByUserId(id);
+//    }
 
     @GetMapping("/search/name/{name}")
     public Page<Product> findProductsByNameContaining(@PathVariable String name, Pageable pageable) {
