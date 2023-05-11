@@ -47,17 +47,6 @@ public class ProductController {
     public Product findProductByNumber(@PathVariable Integer number) {
         return productService.findProductByNumber(number);
     }
-
-//    @GetMapping("/email/{email}")
-//    public List<Product> findProductsByEmail(@PathVariable String email) {
-//        return productService.findProductsByEmail(email);
-//    }
-
-//    @GetMapping("/user/{id}")
-//    public List<Product> findProductsByUserId(@PathVariable Long id) {
-//        return productService.findProductsByUserId(id);
-//    }
-
     @GetMapping("/search/name/{name}")
     public Page<Product> findProductsByNameContaining(@PathVariable String name, Pageable pageable) {
         return productService.findProductsByNameContaining(name, pageable);

@@ -1,6 +1,7 @@
 package com.example.homework65.service;
 
 import com.example.homework65.entity.Product;
+import com.example.homework65.exception.ProductNotFoundException;
 import com.example.homework65.repository.product.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,10 +24,11 @@ public class ProductService{
     public Product findProductByName(String name) {
         return productRepository.findByName(name);
     }
-    @Transactional(readOnly = true)
     public Optional<Product> findProductById(Integer id) {
-        return productRepository.findById(id);
+        return Optional.ofNullable(productRepository.findById(id)
+                .orElseThrow(() -> new ProductNotFoundException(id)));
     }
+
     @Transactional(readOnly = true)
     public Product findProductByNumber(Integer number) {
         return productRepository.findByNumber(number);
