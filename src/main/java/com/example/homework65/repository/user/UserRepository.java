@@ -21,12 +21,5 @@ public interface UserRepository extends BaseRepository<User, Long> {
     @EntityGraph(attributePaths = "roles")
     User getById(Long id);
 
-//    @Query("SELECT u FROM User u LEFT JOIN FETCH u.bucket b LEFT JOIN FETCH b.product WHERE u.id = :userId")
-//    Optional<User> findByIdWithBucket(@Param("userId") Long userId);
-//
-//    @Query("SELECT u FROM User u LEFT JOIN FETCH u.bucket b LEFT JOIN FETCH b.product WHERE u.email = :email")
-//    Optional<User> findByEmailWithBucket(@Param("email") String email);
-
-
 }
 

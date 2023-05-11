@@ -40,5 +40,9 @@ public class User {
     @Column(name = "role")
     private UserRole role;
 
-
+    @ManyToMany
+    @JoinTable(name = "buckets",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "product_id"))
+    private List<Product> bucket;
 }

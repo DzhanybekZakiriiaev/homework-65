@@ -40,22 +40,6 @@ public class UserService {
         return userOptional.orElseThrow(() -> new UserNotFoundException("User not found with id " + id));
     }
 
-//    public Optional<User> getUserByIdWithBucket(Long id) {
-//        Optional<User> userOptional = userRepository.findByIdWithBucket(id);
-//        if (userOptional.isEmpty()) {
-//            throw new UserNotFoundException("User not found with id " + id);
-//        }
-//        return userOptional;
-//    }
-//
-//    public Optional<User> getUserByEmailWithBucket(String email) {
-//        Optional<User> userOptional = userRepository.findByEmailWithBucket(email);
-//        if (userOptional.isEmpty()) {
-//            throw new UserNotFoundException("User not found with email " + email);
-//        }
-//        return userOptional;
-//    }
-
 
     public void saveUser(User user) {
         if (userRepository.findByEmail(user.getEmail()) != null) {

@@ -23,10 +23,4 @@ public interface ProductRepository extends BaseRepository<Product, Integer> {
     Page<Product> findByCategoryName(String category, Pageable pageable);
 
 
-//    @Query("SELECT DISTINCT p FROM User u JOIN u.bucket b JOIN b.product p WHERE u.id = :userId")
-//    List<Product> findProductsByUserId(@Param("userId") Long userId);
-//
-//    @Query("SELECT DISTINCT p FROM User u JOIN u.bucket b JOIN b.product p WHERE u.email = :email")
-//    List<Product> findProductsByEmail(@Param("email") String email);
-
 }
